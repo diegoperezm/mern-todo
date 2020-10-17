@@ -3,14 +3,13 @@ const dbURL         = process.env.DB_URL;
 const express       = require('express');
 const {v4: uuidv4}  = require('uuid');
 const cors          = require('cors');
-const bodyParser    = require('body-parser');
 const app           = express();
 const port          = 5000;
 let   todos         = []; 
 
 app.use(cors());
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 app.get('/todo', (req, res)=>{
     res.json({data: todos});

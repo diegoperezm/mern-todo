@@ -1,14 +1,14 @@
-const Todo          = require('./models/todo.js');
-const mongoose      = require('mongoose');
-const helmet        = require('helmet');
-const cors          = require('cors');
-const express       = require('express');
-const app           = express();
+const Todo      = require('./models/todo.js');
+const mongoose  = require('mongoose');
+const helmet    = require('helmet');
+const cors      = require('cors');
+const express   = require('express');
+const app       = express();
 
 /* Environment variables */
 
 require('dotenv').config();
-const DBURI         = process.env.DB_URI; 
+const DBURI         = process.env.DB_URI;
 const PORT          = process.env.PORT || 5000;
 
 /* Data Base */
@@ -53,22 +53,19 @@ app.get('/todo', (req, res) => {
 
 app.post('/todo', (req, res) => {
     let newTodo = new Todo({data: req.body.data, isCompleted: false});
-
-    newTodo.save().then(() => res.json({timeStamp: Date.now()}));
+    newTodo.save().then(() => res.sendStatus(204));
 });
 
 app.put('/todo', async (req, res) => {
      let todo = await Todo.findOne({_id: req.body.id});
-
      await Todo.updateOne({_id: req.body.id}, {isCompleted: !todo.isCompleted });
-     await res.json({timeStamp: Date.now()});
+     await res.sendStatus(204);
 });
 
 app.delete('/todo', async (req, res) => {
     await Todo.deleteOne({_id: req.body.id});
-    await res.json({timeStamp: Date.now()});
+     await res.sendStatus(204);
 });
 
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
-

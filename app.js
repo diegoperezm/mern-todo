@@ -52,7 +52,7 @@ app.get('/todo', (req, res) => {
 });
 
 app.post('/todo', (req, res) => {
-    let newTodo = new Todo({data: req.body.data, isCompleted: false});
+    let newTodo = new Todo({data: req.body.data, isCompleted: req.body.isCompleted});
     newTodo.save().then(() => res.sendStatus(204));
 });
 

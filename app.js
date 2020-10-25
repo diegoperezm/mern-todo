@@ -56,16 +56,33 @@ app.post('/todo', (req, res) => {
     newTodo.save().then(() => res.sendStatus(204));
 });
 
-app.put('/todo', async (req, res) => {
-     await Todo.updateOne({_id: req.body.id}, {isCompleted: !todo.isCompleted });
-     await res.sendStatus(204);
+app.put('/todo', async (req, res, next) => {
+   try {
     let todo = await Todo.findById({_id: req.body.id});
+    await Todo.updateOne({_id: req.body.id}, {isCompleted: !todo.isCompleted});
+    await res.sendStatus(204);
+    } catch(error) {
+        if(error.message === "Cannot read property \'isCompleted\' of null")  {
+            res.sendStatus(409);
+        }
+
+    }
+
+
 });
 
 app.delete('/todo', async (req, res) => {
     await Todo.deleteOne({_id: req.body.id});
-     await res.sendStatus(204);
+    await res.sendStatus(204);
 });
+
+
+app.use(function (err, req, res, next) {
+    console.error('err',   err); // typeError 
+    console.error('stack', err.stack);
+ // res.status(500).send('Something broke!')
+});
+
 
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));

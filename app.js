@@ -57,9 +57,9 @@ app.post('/todo', (req, res) => {
 });
 
 app.put('/todo', async (req, res) => {
-     let todo = await Todo.findOne({_id: req.body.id});
      await Todo.updateOne({_id: req.body.id}, {isCompleted: !todo.isCompleted });
      await res.sendStatus(204);
+    let todo = await Todo.findById({_id: req.body.id});
 });
 
 app.delete('/todo', async (req, res) => {

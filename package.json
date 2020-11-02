@@ -2,9 +2,9 @@
   "name": "server-todo",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,6 +17,7 @@
     "uuid": "^8.3.1"
   },
     "engines": {
-        "node": "10"
+        "node": "10",
+        "npm": "6",
     }
 }

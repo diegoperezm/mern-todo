@@ -1,4 +1,4 @@
-const Todo      = require('./models/todo.js');
+const Todo      = require('./models/index.js');
 const mongoose  = require('mongoose');
 const helmet    = require('helmet');
 const cors      = require('cors');

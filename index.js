@@ -5,7 +5,7 @@ const {v4: uuidv4}  = require('uuid');
 const cors          = require('cors');
 const bodyParser    = require('body-parser');
 const app           = express();
-const port          = 5000;
+const PORT          = process.env.PORT || 5000;
 let   todos         = []; 
 
 app.use(cors());
@@ -38,7 +38,7 @@ app.delete('/todo', (req, res)=>{
     res.json({timeStamp: Date.now()});
 });
 
-app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`Listening at http://localhost:${PORT}`);
 });
 

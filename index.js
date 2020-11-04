@@ -6,7 +6,7 @@ const express   = require('express');
 const app       = express();
 
 /* Environment variables */
-const DBURI         = process.env.DB_URI;
+const DBURI         = process.env.DBURI;
 const PORT          = process.env.PORT || 5000;
 
 /* Data Base */

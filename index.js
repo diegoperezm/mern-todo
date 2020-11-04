@@ -6,8 +6,6 @@ const express   = require('express');
 const app       = express();
 
 /* Environment variables */
-
-require('dotenv').config();
 const DBURI         = process.env.DB_URI;
 const PORT          = process.env.PORT || 5000;
 
@@ -80,7 +78,7 @@ app.delete('/todo', async (req, res) => {
 app.use(function (err, req, res, next) {
     console.error('err',   err); // typeError 
     console.error('stack', err.stack);
- // res.status(500).send('Something broke!')
+//  res.status(500).send('Something broke!');
 });
 
 
